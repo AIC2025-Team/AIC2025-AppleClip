@@ -2,10 +2,24 @@
 
 ### Setup
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
+### Install dependencies
 
-# Run the application
+```bash
+pip install -r requirements.txt
+```
+
+### Docker Setup
+
+Install Docker if you haven't already. You can find instructions on the [Docker website](https://docs.docker.com/get-docker/).
+
+Run the Docker compose
+
+```bash
+docker compose up -d
+```
+
+### Run the application
+
+```bash
 uvicorn src.main:app --reload
 ```
