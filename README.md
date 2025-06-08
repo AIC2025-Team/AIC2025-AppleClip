@@ -8,6 +8,12 @@
 pip install -r requirements.txt
 ```
 
+### Environment Variables
+
+```bash
+cp .env.example .env
+```
+
 ### Docker Setup
 
 Install Docker if you haven't already. You can find instructions on the [Docker website](https://docs.docker.com/get-docker/).
