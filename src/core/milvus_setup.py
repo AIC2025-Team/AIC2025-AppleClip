@@ -112,4 +112,19 @@ class MilvusSetup:
         else:
             raise ValueError(f"Collection '{collection_name}' does not exist.")
         
-    
+    @staticmethod
+    def search(collection_name: str, data: list, anns_field: str, limit: int, params: dict, output_fields: list):
+        if utility.has_collection(collection_name):
+            collection = Collection(collection_name)
+            collection.load()
+            results = collection.search(
+                data=data,
+                anns_field=anns_field,
+                param=params,
+                limit=limit,
+                output_fields=output_fields
+            )
+            print(f"Search completed in collection '{collection_name}'.")
+            return results
+        else:
+            raise ValueError(f"Collection '{collection_name}' does not exist.")
