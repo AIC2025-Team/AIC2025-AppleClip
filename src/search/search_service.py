@@ -1,6 +1,8 @@
 from src.utils.embedding_models import get_clip_embedding
 from src.core.milvus_setup import MilvusSetup
 from src.search.dtos.search_result_dto import SearchResult
+from src.utils.translate import translate
+
 
 class SearchService:
     def __init__(self):
@@ -13,7 +15,9 @@ class SearchService:
 
         collection = MilvusSetup.get_collection("clip_model_collection")
         if not collection.has_index():
-            raise RuntimeError("Collection does not have an index. Please create an index before searching.")
+            raise RuntimeError(
+                "Collection does not have an index. Please create an index before searching."
+            )
 
         results = MilvusSetup.search(
             collection_name="clip_model_collection",
@@ -21,13 +25,15 @@ class SearchService:
             anns_field="embedding",
             limit=top_k,
             params={"metric_type": "COSINE", "params": {"nprobe": 10}},
-            output_fields=["frame_path"]
+            output_fields=["frame_path"],
         )
         hits = results[0]
-        return [SearchResult(frame_path=hit.entity.get("frame_path"), distance=hit.distance) for hit in hits]
+        return [
+            SearchResult(frame_path=hit.entity.get("frame_path"), distance=hit.distance)
+            for hit in hits
+        ]
 
-    def get_suggestions(self, query: str):
-        return self.search_engine.get_suggestions(query)
+    def translate(self, text: str) -> str:
+        result = translate(text)
+        return result[0]
 
-    def get_search_history(self, user_id: str):
-        return self.search_engine.get_search_history(user_id)
