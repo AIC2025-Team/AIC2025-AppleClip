@@ -27,5 +27,5 @@ docker compose up -d
 ### Run the application
 
 ```bash
-uvicorn src.main:app --reload
+uvicorn run:app --reload-exclude docker_data
 ```
