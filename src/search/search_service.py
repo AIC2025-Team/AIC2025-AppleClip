@@ -1,7 +1,6 @@
-from src.utils.embedding_models import get_clip_embedding
+from src.search.embedding_models import get_clip_embedding
 from src.core.milvus_setup import MilvusSetup
 from src.search.dtos.search_result_dto import SearchResult
-from src.utils.translate import translate
 
 
 class SearchService:
@@ -33,7 +32,7 @@ class SearchService:
             for hit in hits
         ]
 
-    def translate(self, text: str) -> str:
-        result = translate(text)
-        return result[0]
+    # def translate(self, text: str) -> str:
+    #     result = translate(text)
+    #     return result[0]
 

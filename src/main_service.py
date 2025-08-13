@@ -1,4 +1,3 @@
-from sqlalchemy.orm import Session
 
 class MainService:
     def __init__(self):

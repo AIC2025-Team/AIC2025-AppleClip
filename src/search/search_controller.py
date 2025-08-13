@@ -13,8 +13,9 @@ class SearchController:
         query: str = Query(..., description="The search query string"),
         top_k: int = Query(10, description="Number of top results to return"),
     ):
-        translated_text = self.search_service.translate(query)
-        return self.search_service.search(translated_text, top_k)
+        # translated_text = self.search_service.translate(query)
+        print(query)
+        return self.search_service.search(query, top_k)
 
 
 search_controller = SearchController(SearchService())
